@@ -65,7 +65,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- TKJ -->
-                <button onclick="showSubjects('TKJ')" class="group relative p-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all text-left overflow-hidden">
+                <button onclick="showSubjects('Mapel Umum')" class="group relative p-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all text-left overflow-hidden">
                     <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-150 transition-transform">
                         <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M4 6h16v10H4V6m0-2a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2H4m3 16h10v2H7v-2z"></path></svg>
                     </div>
@@ -74,6 +74,21 @@
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Mapel Umum</h3>
                     <p class="text-slate-500 dark:text-slate-400">Mata Pelajaran Umum</p>
+                    <div class="mt-6 inline-flex items-center gap-2 text-blue-600 font-semibold group-hover:gap-4 transition-all">
+                        Lihat Mapel <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
+                </button>
+
+                <!-- TKJ -->
+                <button onclick="showSubjects('TKJ')" class="group relative p-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all text-left overflow-hidden">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-150 transition-transform">
+                        <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M4 6h16v10H4V6m0-2a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2H4m3 16h10v2H7v-2z"></path></svg>
+                    </div>
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center text-blue-600 mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">TKJ</h3>
+                    <p class="text-slate-500 dark:text-slate-400">Teknik Komputer & Jaringan</p>
                     <div class="mt-6 inline-flex items-center gap-2 text-blue-600 font-semibold group-hover:gap-4 transition-all">
                         Lihat Mapel <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </div>
@@ -137,11 +152,12 @@
                         <h2 id="detail-title" class="text-3xl font-extrabold mt-2">Nama Mata Pelajaran</h2>
                     </div>
                     <div class="flex gap-2">
-                        <button class="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-all text-sm font-medium">
+                        <a id="download-pdf-btn" href="#" target="_blank" download class="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-all text-sm font-medium">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                             Download PDF
-                        </button>
+                         </a>
                     </div>
+
                 </div>
 
                 <div class="prose dark:prose-invert max-w-none">
@@ -178,11 +194,18 @@
     <script>
         // Data Mockup
         const examData = {
-            'TKJ': [
-                { id: 'tkj1', name: 'PPKN', contents: ['Hak Asasi Manusia', 'Gotong royong', 'UUD NRI 1945', 'Sistem Demokrasi', 'Asas Bernegara'], latsol: 'https://gemini.google.com/share/2e715a092965' },
-                { id: 'tkj2', name: 'Bahasa Ingriss', contents: ['Listening', 'Application Letter', 'Incomplete Dialogue', 'Factual Report', 'Tenses' ], latsol: 'https://gemini.google.com/share/0537edfe31f0' },
-                { id: 'tkj3', name: 'Coming Soon', contents: ['Setting Mikrotik', 'Troubleshooting Jaringan', 'Routing Statis & Dinamis', 'Fiber Optic'], latsol: 'https://gemini.google.com/app' }
+            'Mapel Umum': [
+                { id: 'mapelumum1', name: 'PPKN', contents: ['Hak Asasi Manusia', 'Gotong royong', 'UUD NRI 1945', 'Sistem Demokrasi', 'Asas Bernegara'], latsol: 'https://gemini.google.com/share/2e715a092965', pdfUrl:'./pdf/Kisi2 SOAL PPKN_2026.xls' } ,
+                { id: 'mapelumum2', name: 'Bahasa Inggris', contents: ['Listening', 'Application Letter', 'Incomplete Dialogue', 'Factual Report', 'Tenses' ], latsol: 'https://gemini.google.com/share/0537edfe31f0', pdfUrl:'./pdf/KISI KISI ASAS 2026.pdf' },
+                { id: 'mapelumum3', name: 'Matematika', contents: ['Peluang Majemuk', 'Aritmatika', 'Invers', 'Program Linear'], latsol: 'https://gemini.google.com/share/63f3b81a4291s', pdfUrl:'./pdf/Kisi-KisiMTK.zip'}
             ],
+            'TKJ': [
+                { id: 'tkj1', name: 'Coming Soon (PKK TKJ)', contents: ['Break Even Point', 'SWOT', 'Pemasaran Produk', 'Laba Penjualan', 'Segmentasi Produk'], latsol: 'https://gemini.google.com/share/2e715a092965', pdfUrl:'./pdf/Kisi2 SOAL PPKN_2026.xls' } ,
+                { id: 'tkj2', name: 'Coming Soon (Cyber Security)', contents: ['Coming Soon'], latsol: 'https://gemini.google.com/share/fb58a8b1c2f9', pdfUrl:'' },
+                { id: 'tkj3', name: 'Coming Soon (Coding)', contents: ['Coming Soon'], latsol: 'https://anandafadillah.github.io/e-learning-dasar-tjkt/asas/', pdfUrl:''}
+            ],
+
+
             'MPLB': [
                 { id: 'mplb1', name: 'Manajemen Perkantoran', contents: ['Etika Kerja', 'Penanganan Surat', 'Pengelolaan Sarana Prasarana', 'Digital Archiving'], latsol: 'https://gemini.google.com/app' },
                 { id: 'mplb2', name: 'Layanan Bisnis', contents: ['Komunikasi Bisnis', 'Public Relations', 'Customer Service', 'Event Management'], latsol: 'https://gemini.google.com/app' }
@@ -230,28 +253,38 @@
         }
 
         function showDetail(subject) {
-            currentSubject = subject;
-            document.getElementById('view-subjects').classList.add('hidden');
-            document.getElementById('view-detail').classList.remove('hidden');
-            
-            document.getElementById('detail-tag').innerText = currentMajor;
-            document.getElementById('detail-title').innerText = subject.name;
-            document.getElementById('latsol-link').href = subject.latsol;
-            
-            const contentList = document.getElementById('detail-content');
-            contentList.innerHTML = '';
-            subject.contents.forEach(item => {
-                const li = document.createElement('li');
-                li.className = 'flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800';
-                li.innerHTML = `
-                    <div class="mt-1.5 w-2 h-2 rounded-full bg-blue-600 shrink-0"></div>
-                    <span class="text-slate-700 dark:text-slate-300 font-medium">${item}</span>
-                `;
-                contentList.appendChild(li);
-            });
-            window.scrollTo(0, 0);
-        }
+    currentSubject = subject;
+    document.getElementById('view-subjects').classList.add('hidden');
+    document.getElementById('view-detail').classList.remove('hidden');
+    
+    document.getElementById('detail-tag').innerText = currentMajor;
+    document.getElementById('detail-title').innerText = subject.name;
+    document.getElementById('latsol-link').href = subject.latsol;
 
+    // --- BAGIAN BARU: LOGIKA DOWNLOAD PDF ---
+    const downloadBtn = document.getElementById('download-pdf-btn');
+    if (subject.pdfUrl) {
+        downloadBtn.href = subject.pdfUrl;
+        downloadBtn.classList.remove('hidden'); // Tampilkan jika ada file
+    } else {
+        downloadBtn.classList.add('hidden'); // Sembunyikan jika link file tidak ada
+    }
+    // ----------------------------------------
+
+    const contentList = document.getElementById('detail-content');
+    contentList.innerHTML = '';
+    subject.contents.forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800';
+        li.innerHTML = `
+            <div class="mt-1.5 w-2 h-2 rounded-full bg-blue-600 shrink-0"></div>
+            <span class="text-slate-700 dark:text-slate-300 font-medium">${item}</span>
+        `;
+        contentList.appendChild(li);
+    });
+    window.scrollTo(0, 0);
+}
+     
         function backToSubjects() {
             showSubjects(currentMajor);
         }
