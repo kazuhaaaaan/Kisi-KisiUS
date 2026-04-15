@@ -55,6 +55,39 @@
         </div>
     </header>
 
+    <button id="donateBtn" class="fixed bottom-6 right-6 z-[60] flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-xl shadow-blue-500/40 transition-all hover:scale-110 active:scale-95 group">
+    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+    Donate for Support
+</button>
+
+<div id="qrisModal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm fade-in">
+    <div class="relative w-full max-w-sm bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden p-8 text-center">
+        <button id="closeModal" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <div class="mb-6">
+            <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center text-blue-600 mx-auto mb-4">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold dark:text-white">Dukung KazuDev</h3>
+            <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Scan QRIS di bawah untuk donasi</p>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-3xl border border-dashed border-slate-300 dark:border-slate-700">
+            <img src="./pdf/Qris.jpeg" alt="QRIS Donasi" class="w-full h-auto rounded-xl shadow-sm">
+        </div>
+
+        <p class="mt-6 text-xs text-slate-400">Terima kasih atas kontribusi kamu dalam pengembangan portal ini! 🚀</p>
+    </div>
+</div>
+
     <main class="max-w-6xl mx-auto px-6 py-12">
         <!-- Home View: Major Selection -->
         <section id="view-home" class="fade-in">
@@ -62,6 +95,8 @@
                 <h2 class="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-500">Pilih Jurusan Kamu</h2>
                 <p class="text-slate-500 dark:text-slate-400 text-lg">Temukan kisi-kisi yang sesuai dengan kompetensi keahlianmu.</p>
             </div>
+
+            
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- TKJ -->
@@ -207,8 +242,8 @@
 
 
             'MPLB': [
-                { id: 'mplb1', name: 'Manajemen Perkantoran', contents: ['Etika Kerja', 'Penanganan Surat', 'Pengelolaan Sarana Prasarana', 'Digital Archiving'], latsol: 'https://gemini.google.com/app' },
-                { id: 'mplb2', name: 'Layanan Bisnis', contents: ['Komunikasi Bisnis', 'Public Relations', 'Customer Service', 'Event Management'], latsol: 'https://gemini.google.com/app' }
+                { id: 'mplb1', name: 'Coding Mplb', contents: ['Python Basic', 'Tipe Data', 'Variable Python', 'Pencipta Python'], latsol: 'https://gemini.google.com/share/948a6472ceed', pdfUrl:'./pdf/MPLB.zip' },
+                { id: 'mplb2', name: 'Coming Soon (Ready For Donate People)', contents: ['Program By KazuDev', 'Donate For Support', 'Gopay, Dana, Shoopepay', '085163725110'], latsol: '' }
             ],
             'DKV': [
                 { id: 'dkv1', name: 'Dasar Desain Grafis', contents: ['Teori Warna', 'Prinsip Tata Letak', 'Typography', 'Vector & Raster'], latsol: 'https://gemini.google.com/app' },
@@ -315,6 +350,35 @@
             document.documentElement.classList.add('dark');
         }
         updateThemeIcons();
+
+
+        // Logic Modal QRIS
+const qrisModal = document.getElementById('qrisModal');
+const donateBtn = document.getElementById('donateBtn');
+const closeModal = document.getElementById('closeModal');
+
+// Buka Modal
+donateBtn.addEventListener('click', () => {
+    qrisModal.classList.remove('hidden');
+    qrisModal.classList.add('flex');
+    document.body.style.overflow = 'hidden'; // Stop scrolling saat modal buka
+});
+
+// Tutup Modal (Tombol X)
+closeModal.addEventListener('click', () => {
+    qrisModal.classList.add('hidden');
+    qrisModal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+});
+
+// Tutup Modal (Klik di Luar Kotak)
+qrisModal.addEventListener('click', (e) => {
+    if (e.target === qrisModal) {
+        qrisModal.classList.add('hidden');
+        qrisModal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+});
 
     </script>
 </body>
