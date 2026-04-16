@@ -366,6 +366,33 @@ donateBtn.addEventListener('click', () => {
     document.body.style.overflow = 'hidden'; // Stop scrolling saat modal buka
 });
 
+// ... (Kode Data Mockup, Navigation, Theme, dan Modal QRIS lu yang lama tetap di sini) ...
+
+// --- LOGIKA POPUP OTOMATIS (DONATEsetiap 10 detik & Saat Buka Web) ---
+
+function openDonateModal() {
+    qrisModal.classList.remove('hidden');
+    qrisModal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+}
+
+// 1. Muncul pas baru buka web (Kasih delay 2 detik biar ga kaget)
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        openDonateModal();
+    }, 2000);
+});
+
+// 2. Muncul setiap 10 detik
+setInterval(() => {
+    // Cek dulu, kalau modalnya lagi kebuka, jangan dipicu lagi
+    if (qrisModal.classList.contains('hidden')) {
+        openDonateModal();
+    }
+}, 10000); // 10000ms = 10 detik
+
+// --- AKHIR LOGIKA POPUP OTOMATIS ---
+
 // Tutup Modal (Tombol X)
 closeModal.addEventListener('click', () => {
     qrisModal.classList.add('hidden');
